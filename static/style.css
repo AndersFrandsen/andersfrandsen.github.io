@@ -50,8 +50,16 @@ main > .subhead {
 	color: #fff;
 }
 
+main > .section {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 2.42rem;
+  margin: 1.5rem 0;
+  font-weight: 400;
+  color: #fff;
+}
+
 .icons i {
-	font-size: 4em;
+	font-size: 5em;
 	padding: 20px;
 	color: #fff;
 }
