@@ -3,30 +3,77 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Hi, I'm Anders.">
-  <meta name="keywords" content="software, devops, embedded, engineer, developer, copenhagen">
+  <meta name="description" content="Anders Frandsen — Embedded & Software Engineer based in Copenhagen.">
   <meta name="author" content="Anders Frandsen">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/cdf5f5e711.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="static/style.css">
-  <title>Anders' | Homepage</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317171A'/><text x='50' y='55' font-family='Inter,sans-serif' font-size='46' font-weight='600' fill='%235B8DEF' text-anchor='middle' dominant-baseline='middle'>AF</text></svg>">
+  <title>Anders Frandsen | anfran.dk</title>
 </head>
 
 <body>
 
   <main>
-    <div class="head">Hi there, I'm Anders.</div>
-    <div class="subhead">Copenhagen-based Software Engineer</div>
+    <div class="head">Hi, I'm Anders.</div>
+    <div class="subhead">Software Engineer in Copenhagen</div>
     <div class="icons">
       <a target="_blank" href="https://dk.linkedin.com/in/a-frandsen/da"><i class="fa-brands fa-linkedin"
-          aria-hidden="true" title="LinkedIn"></i></a>
-      <a target="_blank" href="https://github.com/AndersFrandsen"><i class="fa-brands fa-github" aria-hidden="true"
+          aria-hidden="true" title="LinkedIn"></i></a><a
+        target="_blank" href="https://github.com/AndersFrandsen"><i class="fa-brands fa-github" aria-hidden="true"
           title="GitHub"></i></a>
     </div>
+
+    <div class="projects-heading">Personal Projects</div>
+    <div class="projects">
+      <div class="project-card">
+        <div class="video-wrap" onclick="playVideo(this)">
+          <video poster="assets/thumbnails/espresso.jpg" preload="none" muted playsinline loop>
+            <source src="assets/videos/espresso.mp4" type="video/mp4">
+          </video>
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <a href="https://github.com/Rocket-Gravimetric-Espresso">Gravimetric Espresso Mod</a>
+      </div>
+      <div class="project-card">
+        <div class="video-wrap" onclick="playVideo(this)">
+          <video poster="assets/thumbnails/door-sensor.jpg" preload="none" muted playsinline loop>
+            <source src="assets/videos/door-sensor.mp4" type="video/mp4">
+          </video>
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <a href="https://github.com/ThreadMatterDoorSensor">Thread/Matter Door Sensor</a>
+      </div>
+      <div class="project-card">
+        <div class="video-wrap" onclick="playVideo(this)">
+          <video poster="assets/thumbnails/irobot.jpg" preload="none" muted playsinline loop>
+            <source src="assets/videos/irobot.mp4" type="video/mp4">
+          </video>
+          <i class="fa-solid fa-play play-icon"></i>
+        </div>
+        <span class="wip">iRobot SLAM Kit</span>
+      </div>
+    </div>
   </main>
+
+  <script>
+    function playVideo(wrap) {
+      var video = wrap.querySelector('video');
+      var icon = wrap.querySelector('.play-icon');
+      if (video.paused) {
+        video.play();
+        icon.style.display = 'none';
+        video.controls = true;
+      } else {
+        video.pause();
+        icon.style.display = '';
+        video.controls = false;
+      }
+    }
+  </script>
 
 </body>
 
