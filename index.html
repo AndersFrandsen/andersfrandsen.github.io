@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Anders Frandsen — Embedded & Software Engineer based in Copenhagen.">
+  <meta name="description" content="Anders Frandsen — Embedded & Backend Software Engineer based in Copenhagen.">
   <meta name="author" content="Anders Frandsen">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/cdf5f5e711.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="static/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317171A'/><text x='50' y='55' font-family='Inter,sans-serif' font-size='46' font-weight='600' fill='%235B8DEF' text-anchor='middle' dominant-baseline='middle'>AF</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317171A'/><text x='50' y='55' font-family='Inter,sans-serif' font-size='46' font-weight='600' fill='%237FB0FF' text-anchor='middle' dominant-baseline='middle'>AF</text></svg>">
   <title>Anders Frandsen | anfran.dk</title>
 </head>
 
@@ -21,7 +21,7 @@
     <div class="head">Hi, I'm Anders.</div>
     <div class="subhead">Software Engineer in Copenhagen</div>
     <div class="icons">
-      <a target="_blank" href="https://dk.linkedin.com/in/a-frandsen/da"><i class="fa-brands fa-linkedin"
+      <a target="_blank" href="https://www.linkedin.com/in/a-frandsen/"><i class="fa-brands fa-linkedin"
           aria-hidden="true" title="LinkedIn"></i></a><a
         target="_blank" href="https://github.com/AndersFrandsen"><i class="fa-brands fa-github" aria-hidden="true"
           title="GitHub"></i></a>
@@ -30,49 +30,240 @@
     <div class="projects-heading">Personal Projects</div>
     <div class="projects">
       <div class="project-card">
-        <div class="video-wrap" onclick="playVideo(this)">
-          <video poster="assets/thumbnails/espresso.jpg" preload="none" muted playsinline loop>
-            <source src="assets/videos/espresso.mp4" type="video/mp4">
-          </video>
-          <i class="fa-solid fa-play play-icon"></i>
-        </div>
-        <a href="https://github.com/Rocket-Gravimetric-Espresso">Gravimetric Espresso Mod</a>
+        <button class="card-thumb" onclick="openModal('espresso')"
+          aria-label="Open Gravimetric Espresso Mod details">
+          <img src="assets/thumbnails/espresso.png" alt="Gravimetric Espresso Mod" loading="lazy">
+        </button>
+        <button class="project-title" onclick="openModal('espresso')">
+          Gravimetric Espresso Mod <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
       </div>
       <div class="project-card">
-        <div class="video-wrap" onclick="playVideo(this)">
-          <video poster="assets/thumbnails/door-sensor.jpg" preload="none" muted playsinline loop>
-            <source src="assets/videos/door-sensor.mp4" type="video/mp4">
-          </video>
-          <i class="fa-solid fa-play play-icon"></i>
-        </div>
-        <a href="https://github.com/ThreadMatterDoorSensor">Thread/Matter Door Sensor</a>
-      </div>
-      <div class="project-card">
-        <div class="video-wrap" onclick="playVideo(this)">
-          <video poster="assets/thumbnails/irobot.jpg" preload="none" muted playsinline loop>
-            <source src="assets/videos/irobot.mp4" type="video/mp4">
-          </video>
-          <i class="fa-solid fa-play play-icon"></i>
-        </div>
-        <span class="wip">iRobot SLAM Kit</span>
+        <button class="card-thumb" onclick="openModal('door-sensor')"
+          aria-label="Open Matter over Thread Door Sensor details">
+          <img src="assets/thumbnails/door-sensor.png" alt="Matter over Thread Door Sensor" loading="lazy">
+        </button>
+        <button class="project-title" onclick="openModal('door-sensor')">
+          Matter over Thread Door Sensor <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </main>
 
+  <!-- ───────────── Espresso project ───────────── -->
+  <div class="modal-overlay" id="modal-espresso" hidden onclick="onOverlayClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Gravimetric Espresso Mod">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <article class="modal-body">
+        <h2>Gravimetric Espresso Mod</h2>
+        <p>A personal project modifying my Rocket Espresso machine into a gravimetric (brew-by-weight) machine —
+          enabling precise measurement and control of espresso extraction for more consistency in every shot.</p>
+
+        <img class="modal-img" src="assets/projects/espresso/installation.png" alt="Installation" loading="lazy">
+
+        <h3>Features</h3>
+        <ul>
+          <li><strong>Brew-by-weight control:</strong> monitors the shot's weight in real time and automatically stops
+            extraction once the target ratio is reached.</li>
+          <li><strong>UI:</strong> a responsive TFT touchscreen interface showing shot weight, extraction time, and
+            shot settings.</li>
+        </ul>
+
+        <div class="img-pair">
+          <figure>
+            <img src="assets/projects/espresso/cup_weight.png" alt="Cup weight" loading="lazy">
+            <figcaption>Cup weight (reference 100.1 g)</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/projects/espresso/cup_and_brew_weight.png" alt="Cup and brew weight" loading="lazy">
+            <figcaption>Cup + extraction weight (reference 136.74 g)</figcaption>
+          </figure>
+        </div>
+        <p>The reference cup was also used for loadcell calibration. The extraction here is 36.64 g — close to the
+          36 g target (18 g dose at a 1:2 ratio).</p>
+
+        <h3>Hardware used</h3>
+        <ul>
+          <li>MCU: Nordic nRF52840</li>
+          <li>TFT touch: Adafruit 2.8" Capacitive</li>
+          <li>SparkFun 500 g loadcell</li>
+          <li>NAU7802SGI 24-bit ADC</li>
+          <li>TCK108AF load switch IC</li>
+        </ul>
+
+        <h3>Software and tools</h3>
+        <ul>
+          <li>Zephyr RTOS for
+            <a target="_blank" href="https://github.com/AndersFrandsen/espresso-firmware">firmware</a></li>
+          <li>KiCad for
+            <a target="_blank" href="https://github.com/AndersFrandsen/espresso-hardware">PCB design</a></li>
+        </ul>
+
+        <h3>Current limitations</h3>
+        <p>The E61 group head lever not only activates the pump via a switch, but also mechanically opens the
+          pre-infusion valves. Because of this, the lever must still be operated manually for the controller to work.
+          To make the process fully automatic, the lever would need to be actuated too — by a DC motor, servo, or
+          similar mechanism.</p>
+
+        <div class="modal-repos">
+          <a target="_blank" href="https://github.com/AndersFrandsen/espresso-firmware"><i class="fa-solid fa-code"
+              aria-hidden="true"></i> Firmware</a>
+          <a target="_blank" href="https://github.com/AndersFrandsen/espresso-hardware"><i
+              class="fa-solid fa-microchip" aria-hidden="true"></i> Hardware</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- ───────────── Door sensor project ───────────── -->
+  <div class="modal-overlay" id="modal-door-sensor" hidden onclick="onOverlayClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Matter over Thread Door Sensor">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <article class="modal-body">
+        <h2>Matter over Thread Door Sensor</h2>
+        <p>A battery-powered Matter-over-Thread door sensor acting as a Sleepy End Device (SED). Commissioning is
+          validated end-to-end with Home Assistant on a Raspberry Pi running an OpenThread Border Router via an
+          nRF52840 dongle.</p>
+
+        <img class="modal-img" src="assets/projects/door-sensor/casing.png"
+          alt="3D-printed door sensor enclosure with magnet block" loading="lazy">
+
+        <h3>Device Data Model</h3>
+        <h4>Endpoint 0 — Root Device</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Cluster</th><th>ID</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0028">Basic Information</a></td><td><code>0x0028</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x002f">Power Source</a></td><td><code>0x002F</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0046">ICD Management</a></td><td><code>0x0046</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0031">Network Commissioning</a></td><td><code>0x0031</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x003e">Operational Credentials</a></td><td><code>0x003E</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0030">General Commissioning</a></td><td><code>0x0030</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0035">Thread Network Diagnostics</a></td><td><code>0x0035</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0033">General Diagnostics</a></td><td><code>0x0033</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x002a">OTA Software Update Requestor</a></td><td><code>0x002A</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x001f">Access Control</a></td><td><code>0x001F</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x003c">Administrator Commissioning</a></td><td><code>0x003C</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x003f">Group Key Management</a></td><td><code>0x003F</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x001d">Descriptor</a></td><td><code>0x001D</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Endpoint 1 — Contact Sensor <code>0x0015</code></h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Cluster</th><th>ID</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0045">Boolean State</a></td><td><code>0x0045</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0003">Identify</a></td><td><code>0x0003</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x001d">Descriptor</a></td><td><code>0x001D</code></td></tr>
+              <tr><td><a target="_blank" href="https://matter-survey.org/cluster/0x0034">Software Diagnostics</a></td><td><code>0x0034</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Boolean State reports whether the door is open or closed. <code>StateValue</code> is <code>false</code> =
+          closed, <code>true</code> = open.</p>
+
+        <h3>Power Consumption</h3>
+        <p>Power measurements taken with a Nordic Power Profiler Kit (PPK).</p>
+
+        <h4>Idle — ICD SIT (Short Idle Time) mode</h4>
+        <p>As a Sleepy End Device polling on a 15 s interval, the average current over 1 minute is
+          <strong>7.47 µA</strong> (max 9.11 mA during radio activity).</p>
+        <img class="modal-img" src="assets/projects/door-sensor/pwr_avg_15s_sit.png"
+          alt="Average current with 15 s polling in ICD SIT mode" loading="lazy">
+        <p>Measuring between the polling spikes gives <strong>5.84 µA</strong>, which is closer to the true idle floor
+          and what the average would be in ICD LIT (Long Idle Time) mode (WIP).</p>
+        <img class="modal-img" src="assets/projects/door-sensor/pwr_avg_no_spikes.png"
+          alt="Average current with no polling spikes" loading="lazy">
+
+        <h4>Door open</h4>
+        <p>While the door is open the average current is <strong>2.51 mA</strong>, driven mainly by the status LED being
+          on.</p>
+        <img class="modal-img" src="assets/projects/door-sensor/pwr_avg_door_open.png"
+          alt="Average current with door open" loading="lazy">
+
+        <h3>Hardware used</h3>
+        <h4>Endpoint Device</h4>
+        <ul>
+          <li>Platform: Nordic nRF52840-DK (development)</li>
+          <li><a target="_blank" href="https://en.minewsemi.com/bluetooth-module/nrf52840ms88sf21">MS88SF2 module
+              (for PCB)</a></li>
+          <li><a target="_blank" href="https://www.adafruit.com/product/375">Adafruit magnetic reed switch</a></li>
+        </ul>
+        <p>The PCB v1.0 uses a MS88SF2 module, a CR2032 coin cell, a 14-pin STDC14 header for J-Link flashing/debugging.</p>
+        <div class="img-pair">
+          <figure>
+            <img src="assets/projects/door-sensor/pcb_front.png" alt="Door sensor PCB front" loading="lazy">
+            <figcaption>Front — CR2032 holder, reed switch, and antenna keep-out</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/projects/door-sensor/pcb_mcu.png" alt="Door sensor PCB module side" loading="lazy">
+            <figcaption>Back — MS88SF2 (nRF52840) module</figcaption>
+          </figure>
+        </div>
+        <h4>Thread Border Gateway</h4>
+        <ul>
+          <li>Raspberry Pi 4B</li>
+          <li><a target="_blank" href="https://www.nordicsemi.com/Products/Development-hardware/nRF52840-Dongle">Nordic
+              nRF52840 Dongle</a></li>
+        </ul>
+        <p>Preparing the dongle as a Radio Co-Processor (RCP) is straightforward — follow this
+          <a target="_blank"
+            href="https://docs.nordicsemi.com/bundle/ncs-1.7.1/page/matter/openthread_rcp_nrf_dongle.html">guide</a>.
+          Once the firmware is installed, set up Home Assistant on the Raspberry Pi, connect the USB dongle, then
+          install both the OpenThread Border Router (OTBR) and Matter Server add-ons to enable Thread and Matter
+          support.</p>
+
+        <h3>Software and tools</h3>
+        <ul>
+          <li>Zephyr RTOS for
+            <a target="_blank" href="https://github.com/AndersFrandsen/door-sensor-firmware">firmware</a></li>
+          <li>OpenThread <a target="_blank" href="https://openthread.io/">stack</a></li>
+          <li><a target="_blank" href="https://www.home-assistant.io/">Home Assistant</a></li>
+          <li>KiCad for
+            <a target="_blank" href="https://github.com/AndersFrandsen/door-sensor-hardware">PCB design</a></li>
+        </ul>
+
+        <div class="modal-repos">
+          <a target="_blank" href="https://github.com/AndersFrandsen/door-sensor-firmware"><i class="fa-solid fa-code"
+              aria-hidden="true"></i> Firmware</a>
+          <a target="_blank" href="https://github.com/AndersFrandsen/door-sensor-hardware"><i
+              class="fa-solid fa-microchip" aria-hidden="true"></i> Hardware</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
   <script>
-    function playVideo(wrap) {
-      var video = wrap.querySelector('video');
-      var icon = wrap.querySelector('.play-icon');
-      if (video.paused) {
-        video.play();
-        icon.style.display = 'none';
-        video.controls = true;
-      } else {
-        video.pause();
-        icon.style.display = '';
-        video.controls = false;
-      }
+    function openModal(id) {
+      var overlay = document.getElementById('modal-' + id);
+      if (!overlay) return;
+      overlay.hidden = false;
+      document.body.classList.add('modal-open');
     }
+
+    function closeModal() {
+      document.querySelectorAll('.modal-overlay').forEach(function (o) {
+        o.hidden = true;
+        o.scrollTop = 0;
+      });
+      document.body.classList.remove('modal-open');
+    }
+
+    function onOverlayClick(e) {
+      if (e.target.classList.contains('modal-overlay')) closeModal();
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeModal();
+    });
   </script>
 
 </body>
