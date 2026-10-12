@@ -18,13 +18,13 @@
 <body>
 
   <main>
-    <div class="head">Hi, I'm Anders.</div>
+    <div class="head">Hi, I’m Anders.</div>
     <div class="subhead"><span>Software Engineer</span><span class="sep"> | </span><span>Embedded Systems · IoT</span></div>
     <div class="icons">
-      <a target="_blank" href="https://www.linkedin.com/in/a-frandsen/"><i class="fa-brands fa-linkedin"
-          aria-hidden="true" title="LinkedIn"></i></a><a
-        target="_blank" href="https://github.com/AndersFrandsen"><i class="fa-brands fa-github" aria-hidden="true"
-          title="GitHub"></i></a>
+      <a target="_blank" href="https://www.linkedin.com/in/a-frandsen/" aria-label="LinkedIn" title="LinkedIn"><i
+          class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+      <a target="_blank" href="https://github.com/AndersFrandsen" aria-label="GitHub" title="GitHub"><i
+          class="fa-brands fa-github" aria-hidden="true"></i></a>
     </div>
 
     <div class="projects-heading">Open Source Contributions</div>
@@ -36,6 +36,7 @@
         <div class="card-subtitle">STM32WL3x SoC &amp; <span>NUCLEO-WL33CC1</span> board support</div>
         <p>Bring-up of the previously unsupported STM32WL3x SoC family in mainline Zephyr, merged upstream and
           validated on hardware.</p>
+        <div class="card-tags"><i class="fa-solid fa-tags" aria-hidden="true"></i>Zephyr RTOS · STM32WL3x · STM32CubeWL3 HAL/LL</div>
       </div>
     </div>
 
@@ -46,16 +47,17 @@
           Gravimetric Espresso Mod <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
         </button>
         <div class="card-subtitle">Brew-by-weight control for a Rocket Espresso machine</div>
-        <p>Weighs the shot in real time and stops extraction at the target ratio, with a touchscreen UI. Built with
-          nRF52840, Zephyr RTOS and a custom PCB.</p>
+        <p>Weighs the shot in real time and stops extraction at the target ratio, with a touchscreen UI and a
+          custom PCB.</p>
+        <div class="card-tags"><i class="fa-solid fa-tags" aria-hidden="true"></i>nRF52840 · Zephyr RTOS · KiCad</div>
       </div>
       <div class="card">
         <button class="card-title" onclick="openModal('door-sensor')">
           Matter over Thread Door Sensor <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
         </button>
         <div class="card-subtitle">Battery-powered Sleepy End Device</div>
-        <p>A contact sensor idling at 7.47 µA, commissioned end-to-end with Home Assistant. Built with
-          nRF52840, Zephyr, OpenThread and a custom PCB.</p>
+        <p>A contact sensor on a custom PCB idling at 7.47 µA, commissioned end-to-end with Home Assistant.</p>
+        <div class="card-tags"><i class="fa-solid fa-tags" aria-hidden="true"></i>nRF52840 · Zephyr RTOS · Matter · OpenThread · KiCad</div>
       </div>
     </div>
   </main>
@@ -122,7 +124,7 @@
         <p>A personal project modifying my Rocket Espresso machine into a gravimetric (brew-by-weight) machine,
           enabling precise measurement and control of espresso extraction for more consistency in every shot.</p>
 
-        <img class="modal-img" src="assets/projects/espresso/installation.png" alt="Installation" loading="lazy">
+        <img width="800" height="750" class="modal-img" src="assets/projects/espresso/installation.webp" alt="Installation" loading="lazy">
 
         <h3>Features</h3>
         <ul>
@@ -134,11 +136,11 @@
 
         <div class="img-pair">
           <figure>
-            <img src="assets/projects/espresso/cup_weight.png" alt="Cup weight" loading="lazy">
+            <img width="477" height="800" src="assets/projects/espresso/cup_weight.webp" alt="Cup weight" loading="lazy">
             <figcaption>Cup weight (reference 100.1 g)</figcaption>
           </figure>
           <figure>
-            <img src="assets/projects/espresso/cup_and_brew_weight.png" alt="Cup and brew weight" loading="lazy">
+            <img width="485" height="800" src="assets/projects/espresso/cup_and_brew_weight.webp" alt="Cup and brew weight" loading="lazy">
             <figcaption>Cup + extraction weight (reference 136.74 g)</figcaption>
           </figure>
         </div>
@@ -147,7 +149,7 @@
 
         <h3>Hardware used</h3>
         <p>The load cell sits under a 3D-printed weight platform on the drip tray.</p>
-        <img class="modal-img" src="assets/thumbnails/espresso.png"
+        <img width="600" height="367" class="modal-img" src="assets/thumbnails/espresso.webp"
           alt="3D-printed weight platform with the load cell underneath, on the drip tray" loading="lazy">
         <ul>
           <li>MCU: Nordic nRF52840</li>
@@ -193,12 +195,12 @@
 
         <div class="img-pair">
           <figure>
-            <img src="assets/projects/door-sensor/casing.png"
+            <img width="1306" height="691" src="assets/projects/door-sensor/casing.webp"
               alt="3D-printed door sensor enclosure with magnet block" loading="lazy">
             <figcaption>Closed enclosure with magnet block</figcaption>
           </figure>
           <figure>
-            <img src="assets/thumbnails/door-sensor.png"
+            <img width="600" height="367" src="assets/thumbnails/door-sensor.webp"
               alt="Door sensor enclosure opened with the PCB installed" loading="lazy">
             <figcaption>Opened, with the PCB installed</figcaption>
           </figure>
@@ -252,17 +254,17 @@
         <h4>Idle: ICD SIT (Short Idle Time) mode</h4>
         <p>As a Sleepy End Device polling on a 15 s interval, the average current over 1 minute is
           <strong>7.47 µA</strong> (max 9.11 mA during radio activity).</p>
-        <img class="modal-img" src="assets/projects/door-sensor/pwr_avg_15s_sit.png"
+        <img width="1094" height="195" class="modal-img" src="assets/projects/door-sensor/pwr_avg_15s_sit.webp"
           alt="Average current with 15 s polling in ICD SIT mode" loading="lazy">
         <p>Measuring between the polling spikes gives <strong>5.84 µA</strong>, which is closer to the true idle floor
           and what the average would be in ICD LIT (Long Idle Time) mode (WIP).</p>
-        <img class="modal-img" src="assets/projects/door-sensor/pwr_avg_no_spikes.png"
+        <img width="1086" height="843" class="modal-img" src="assets/projects/door-sensor/pwr_avg_no_spikes.webp"
           alt="Average current with no polling spikes" loading="lazy">
 
         <h4>Door open</h4>
         <p>While the door is open the average current is <strong>2.51 mA</strong>, driven mainly by the status LED being
           on.</p>
-        <img class="modal-img" src="assets/projects/door-sensor/pwr_avg_door_open.png"
+        <img width="1086" height="874" class="modal-img" src="assets/projects/door-sensor/pwr_avg_door_open.webp"
           alt="Average current with door open" loading="lazy">
 
         <h3>Hardware used</h3>
@@ -276,11 +278,11 @@
         <p>The PCB v1.0 uses a MS88SF2 module, a CR2032 coin cell, a 14-pin STDC14 header for J-Link flashing/debugging.</p>
         <div class="img-pair">
           <figure>
-            <img src="assets/projects/door-sensor/pcb_front.png" alt="Door sensor PCB front" loading="lazy">
+            <img width="373" height="483" src="assets/projects/door-sensor/pcb_front.webp" alt="Door sensor PCB front" loading="lazy">
             <figcaption>Front: CR2032 holder, reed switch, and antenna keep-out</figcaption>
           </figure>
           <figure>
-            <img src="assets/projects/door-sensor/pcb_mcu.png" alt="Door sensor PCB module side" loading="lazy">
+            <img width="393" height="518" src="assets/projects/door-sensor/pcb_mcu.webp" alt="Door sensor PCB module side" loading="lazy">
             <figcaption>Back: MS88SF2 (nRF52840) module</figcaption>
           </figure>
         </div>
@@ -318,19 +320,42 @@
   </div>
 
   <script>
-    function openModal(id) {
+    // Each modal is reachable at #<id> (e.g. anfran.dk/#espresso), and Back closes it.
+    function showModal(id) {
       var overlay = document.getElementById('modal-' + id);
       if (!overlay) return;
       overlay.hidden = false;
       document.body.classList.add('modal-open');
     }
 
-    function closeModal() {
+    function hideModals() {
       document.querySelectorAll('.modal-overlay').forEach(function (o) {
         o.hidden = true;
         o.scrollTop = 0;
       });
       document.body.classList.remove('modal-open');
+    }
+
+    function syncWithHash() {
+      hideModals();
+      if (location.hash) showModal(location.hash.slice(1));
+    }
+
+    function openModal(id) {
+      if (location.hash !== '#' + id) history.pushState({ modal: id }, '', '#' + id);
+      showModal(id);
+    }
+
+    function closeModal() {
+      if (!document.body.classList.contains('modal-open')) return;
+      if (history.state && history.state.modal) {
+        // Opened from the page: step back so Back doesn't reopen it.
+        history.back();
+      } else {
+        // Landed directly on a #link: drop the hash without leaving the site.
+        history.replaceState(null, '', location.pathname + location.search);
+        hideModals();
+      }
     }
 
     function onOverlayClick(e) {
@@ -340,6 +365,9 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeModal();
     });
+
+    window.addEventListener('popstate', syncWithHash);
+    syncWithHash();
   </script>
 
 </body>

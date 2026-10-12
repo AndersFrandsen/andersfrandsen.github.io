@@ -2,8 +2,10 @@
 	--bg: #0E0E10;
 	--surface: #17171A;
 	--text: #ECECEC;
+	--text-mid: #C4C4C9;
 	--text-dim: #9A9A9F;
 	--hairline: #26262B;
+	--hairline-strong: #3A3A41;
 	--accent: #7FB0FF;
 }
 
@@ -43,25 +45,24 @@ body {
 	}
 }
 
+/* One left-aligned column shared by the hero and the cards. */
 main {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-	justify-content: center;
-	padding: 0 30px;
-	text-align: center;
+	max-width: calc(720px + 2rem + 60px);
+	margin: 0 auto;
+	padding: 14vh 30px 5rem;
 }
 
 main > .head {
 	font-size: 3.75em;
 	font-weight: 600;
 	letter-spacing: -0.02em;
+	line-height: 1.1;
 	color: var(--text);
 }
 
 main > .subhead {
 	font-size: 1.42rem;
-	margin: 1.25rem 0 0;
+	margin: 1rem 0 0;
 	font-weight: 400;
 	color: var(--text-dim);
 }
@@ -71,6 +72,10 @@ main > .subhead span {
 }
 
 @media (max-width: 575px) {
+	main {
+		padding-top: 10vh;
+	}
+
 	main > .subhead span {
 		display: block;
 	}
@@ -80,9 +85,14 @@ main > .subhead span {
 	}
 }
 
+.icons {
+	display: flex;
+	gap: 1.25rem;
+	margin-top: 1.5rem;
+}
+
 .icons i {
-	font-size: 3.25em;
-	padding: 18px;
+	font-size: 1.75em;
 	color: var(--text-dim);
 	transition: color 0.2s;
 }
@@ -97,8 +107,8 @@ main > .subhead span {
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	color: var(--text-dim);
-	margin-top: 3rem;
-	margin-bottom: 1.5rem;
+	margin-top: 4rem;
+	margin-bottom: 1.25rem;
 }
 
 /* ───────────── Cards ───────────── */
@@ -106,20 +116,22 @@ main > .subhead span {
 	display: flex;
 	flex-direction: column;
 	gap: 1.25rem;
-	max-width: calc(720px + 2rem);
-	width: 100%;
-	margin: 0 auto;
 }
 
 .card {
+	position: relative;
 	padding: 1.5rem 1.75rem;
-	text-align: left;
 	font-size: 0.95rem;
 	line-height: 1.6;
 	color: var(--text-dim);
 	background: var(--surface);
 	border: 1px solid var(--hairline);
 	border-radius: 10px;
+	transition: border-color 0.2s;
+}
+
+.card:hover {
+	border-color: var(--hairline-strong);
 }
 
 .card p {
@@ -140,6 +152,14 @@ main > .subhead span {
 	transition: color 0.2s;
 }
 
+/* Stretch the title button over the whole card so any click opens it. */
+.card-title::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+}
+
 .card-title i {
 	display: inline-block;
 	margin-left: 0.45rem;
@@ -149,11 +169,11 @@ main > .subhead span {
 	transition: color 0.2s, transform 0.2s;
 }
 
-.card-title:hover {
+.card:hover .card-title {
 	color: var(--accent);
 }
 
-.card-title:hover i {
+.card:hover .card-title i {
 	color: var(--accent);
 	transform: translateX(3px);
 }
@@ -161,12 +181,26 @@ main > .subhead span {
 .card-subtitle {
 	font-size: 0.95rem;
 	font-weight: 500;
-	color: var(--accent);
+	color: var(--text-mid);
 	margin-bottom: 0.75rem;
 }
 
 .card-subtitle span {
 	white-space: nowrap;
+}
+
+/* Tech keywords, like \techline in the CV. */
+.card-tags {
+	margin-top: 0.9rem;
+	font-size: 0.8rem;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+	color: var(--text-dim);
+}
+
+.card-tags i {
+	margin-right: 0.5rem;
+	font-size: 0.9em;
 }
 
 /* ───────────── Project modal ───────────── */
@@ -296,6 +330,7 @@ body.modal-open {
 .modal-img {
 	display: block;
 	width: 100%;
+	height: auto;
 	border-radius: 10px;
 	border: 1px solid var(--hairline);
 	margin: 0.5rem 0 1.25rem;
@@ -321,6 +356,7 @@ body.modal-open {
 	min-height: 0;
 	object-fit: cover;
 	width: 100%;
+	height: auto;
 	border-radius: 10px;
 	border: 1px solid var(--hairline);
 }
