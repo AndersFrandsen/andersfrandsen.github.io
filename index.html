@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Anders Frandsen — Embedded & Backend Software Engineer based in Copenhagen.">
+  <meta name="description" content="Anders Frandsen, Embedded & Backend Software Engineer based in Copenhagen.">
   <meta name="author" content="Anders Frandsen">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
 
   <main>
     <div class="head">Hi, I'm Anders.</div>
-    <div class="subhead">Software Engineer in Copenhagen</div>
+    <div class="subhead"><span>Software Engineer</span><span class="sep"> | </span><span>Embedded Systems · IoT</span></div>
     <div class="icons">
       <a target="_blank" href="https://www.linkedin.com/in/a-frandsen/"><i class="fa-brands fa-linkedin"
           aria-hidden="true" title="LinkedIn"></i></a><a
@@ -27,28 +27,91 @@
           title="GitHub"></i></a>
     </div>
 
-    <div class="projects-heading">Personal Projects</div>
-    <div class="projects">
-      <div class="project-card">
-        <button class="card-thumb" onclick="openModal('espresso')"
-          aria-label="Open Gravimetric Espresso Mod details">
-          <img src="assets/thumbnails/espresso.png" alt="Gravimetric Espresso Mod" loading="lazy">
+    <div class="projects-heading">Open Source Contributions</div>
+    <div class="cards">
+      <div class="card">
+        <button class="card-title" onclick="openModal('zephyr')">
+          Zephyr RTOS <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
         </button>
-        <button class="project-title" onclick="openModal('espresso')">
+        <div class="card-subtitle">STM32WL3x SoC &amp; <span>NUCLEO-WL33CC1</span> board support</div>
+        <p>Bring-up of the previously unsupported STM32WL3x SoC family in mainline Zephyr, merged upstream and
+          validated on hardware.</p>
+      </div>
+    </div>
+
+    <div class="projects-heading">Personal Projects</div>
+    <div class="cards">
+      <div class="card">
+        <button class="card-title" onclick="openModal('espresso')">
           Gravimetric Espresso Mod <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
         </button>
+        <div class="card-subtitle">Brew-by-weight control for a Rocket Espresso machine</div>
+        <p>Weighs the shot in real time and stops extraction at the target ratio, with a touchscreen UI. Built with
+          nRF52840, Zephyr RTOS and a custom PCB.</p>
       </div>
-      <div class="project-card">
-        <button class="card-thumb" onclick="openModal('door-sensor')"
-          aria-label="Open Matter over Thread Door Sensor details">
-          <img src="assets/thumbnails/door-sensor.png" alt="Matter over Thread Door Sensor" loading="lazy">
-        </button>
-        <button class="project-title" onclick="openModal('door-sensor')">
+      <div class="card">
+        <button class="card-title" onclick="openModal('door-sensor')">
           Matter over Thread Door Sensor <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
         </button>
+        <div class="card-subtitle">Battery-powered Sleepy End Device</div>
+        <p>A contact sensor idling at 7.47 µA, commissioned end-to-end with Home Assistant. Built with
+          nRF52840, Zephyr, OpenThread and a custom PCB.</p>
       </div>
     </div>
   </main>
+
+  <!-- ───────────── Zephyr contribution ───────────── -->
+  <div class="modal-overlay" id="modal-zephyr" hidden onclick="onOverlayClick(event)">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="STM32WL3x support in Zephyr">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <article class="modal-body">
+        <h2>STM32WL3x support in Zephyr</h2>
+        <p>The STM32WL3x is a sub-GHz wireless MCU family, based on an Arm Cortex-M0+. I first worked with it
+          during my MSc thesis, using ST's STM32CubeWL HAL. Zephyr had no support for it, so afterwards I brought up
+          the SoC family and the NUCLEO-WL33CC1 board in mainline Zephyr. All of the work below is merged
+          upstream.</p>
+
+        <h3>SoC bring-up</h3>
+        <p>The foundation for running Zephyr on the chip at all
+          (<a target="_blank" href="https://github.com/zephyrproject-rtos/zephyr/pull/114483">zephyr #114483</a>):</p>
+        <ul>
+          <li>SoC definitions</li>
+          <li>Clock control</li>
+          <li>GPIO</li>
+          <li>USART</li>
+        </ul>
+
+        <h3>HAL integration</h3>
+        <p>Integrated ST's STM32CubeWL3 HAL/LL drivers into Zephyr's <code>hal_stm32</code> module, which the
+          Zephyr drivers build on
+          (<a target="_blank" href="https://github.com/zephyrproject-rtos/hal_stm32/pull/394">hal_stm32 #394</a>).</p>
+
+        <h3>Peripheral drivers</h3>
+        <p>Support for the remaining core peripherals
+          (<a target="_blank" href="https://github.com/zephyrproject-rtos/zephyr/pull/118648">zephyr #118648</a>):</p>
+        <ul>
+          <li>SPI, I²C, DMA and RTC</li>
+          <li><strong>DMAMUX request-slot fix:</strong> a bug in the shared STM32 DMAMUX handling that also affects
+            STM32WB0</li>
+          <li><strong>RTC calendar errata:</strong> a workaround for the issue described in ST errata sheet ES0612</li>
+        </ul>
+
+        <h3>Testing</h3>
+        <p>Everything was validated on hardware with the Zephyr driver test suites.</p>
+
+        <div class="modal-repos">
+          <a target="_blank" href="https://github.com/zephyrproject-rtos/zephyr/pull/114483"><i
+              class="fa-solid fa-code-pull-request" aria-hidden="true"></i> zephyr #114483</a>
+          <a target="_blank" href="https://github.com/zephyrproject-rtos/hal_stm32/pull/394"><i
+              class="fa-solid fa-code-pull-request" aria-hidden="true"></i> hal_stm32 #394</a>
+          <a target="_blank" href="https://github.com/zephyrproject-rtos/zephyr/pull/118648"><i
+              class="fa-solid fa-code-pull-request" aria-hidden="true"></i> zephyr #118648</a>
+          <a target="_blank" href="https://github.com/zephyrproject-rtos/zephyr/pulls?q=is%3Apr+author%3AAndersFrandsen"><i
+              class="fa-brands fa-github" aria-hidden="true"></i> All my Zephyr PRs</a>
+        </div>
+      </article>
+    </div>
+  </div>
 
   <!-- ───────────── Espresso project ───────────── -->
   <div class="modal-overlay" id="modal-espresso" hidden onclick="onOverlayClick(event)">
@@ -56,7 +119,7 @@
       <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
       <article class="modal-body">
         <h2>Gravimetric Espresso Mod</h2>
-        <p>A personal project modifying my Rocket Espresso machine into a gravimetric (brew-by-weight) machine —
+        <p>A personal project modifying my Rocket Espresso machine into a gravimetric (brew-by-weight) machine,
           enabling precise measurement and control of espresso extraction for more consistency in every shot.</p>
 
         <img class="modal-img" src="assets/projects/espresso/installation.png" alt="Installation" loading="lazy">
@@ -79,10 +142,13 @@
             <figcaption>Cup + extraction weight (reference 136.74 g)</figcaption>
           </figure>
         </div>
-        <p>The reference cup was also used for loadcell calibration. The extraction here is 36.64 g — close to the
+        <p>The reference cup was also used for loadcell calibration. The extraction here is 36.64 g, close to the
           36 g target (18 g dose at a 1:2 ratio).</p>
 
         <h3>Hardware used</h3>
+        <p>The load cell sits under a 3D-printed weight platform on the drip tray.</p>
+        <img class="modal-img" src="assets/thumbnails/espresso.png"
+          alt="3D-printed weight platform with the load cell underneath, on the drip tray" loading="lazy">
         <ul>
           <li>MCU: Nordic nRF52840</li>
           <li>TFT touch: Adafruit 2.8" Capacitive</li>
@@ -102,7 +168,7 @@
         <h3>Current limitations</h3>
         <p>The E61 group head lever not only activates the pump via a switch, but also mechanically opens the
           pre-infusion valves. Because of this, the lever must still be operated manually for the controller to work.
-          To make the process fully automatic, the lever would need to be actuated too — by a DC motor, servo, or
+          To make the process fully automatic, the lever would need to be actuated too, by a DC motor, servo, or
           similar mechanism.</p>
 
         <div class="modal-repos">
@@ -125,11 +191,21 @@
           validated end-to-end with Home Assistant on a Raspberry Pi running an OpenThread Border Router via an
           nRF52840 dongle.</p>
 
-        <img class="modal-img" src="assets/projects/door-sensor/casing.png"
-          alt="3D-printed door sensor enclosure with magnet block" loading="lazy">
+        <div class="img-pair">
+          <figure>
+            <img src="assets/projects/door-sensor/casing.png"
+              alt="3D-printed door sensor enclosure with magnet block" loading="lazy">
+            <figcaption>Closed enclosure with magnet block</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/thumbnails/door-sensor.png"
+              alt="Door sensor enclosure opened with the PCB installed" loading="lazy">
+            <figcaption>Opened, with the PCB installed</figcaption>
+          </figure>
+        </div>
 
         <h3>Device Data Model</h3>
-        <h4>Endpoint 0 — Root Device</h4>
+        <h4>Endpoint 0: Root Device</h4>
         <div class="table-wrap">
           <table>
             <thead>
@@ -153,7 +229,7 @@
           </table>
         </div>
 
-        <h4>Endpoint 1 — Contact Sensor <code>0x0015</code></h4>
+        <h4>Endpoint 1: Contact Sensor <code>0x0015</code></h4>
         <div class="table-wrap">
           <table>
             <thead>
@@ -173,7 +249,7 @@
         <h3>Power Consumption</h3>
         <p>Power measurements taken with a Nordic Power Profiler Kit (PPK).</p>
 
-        <h4>Idle — ICD SIT (Short Idle Time) mode</h4>
+        <h4>Idle: ICD SIT (Short Idle Time) mode</h4>
         <p>As a Sleepy End Device polling on a 15 s interval, the average current over 1 minute is
           <strong>7.47 µA</strong> (max 9.11 mA during radio activity).</p>
         <img class="modal-img" src="assets/projects/door-sensor/pwr_avg_15s_sit.png"
@@ -201,11 +277,11 @@
         <div class="img-pair">
           <figure>
             <img src="assets/projects/door-sensor/pcb_front.png" alt="Door sensor PCB front" loading="lazy">
-            <figcaption>Front — CR2032 holder, reed switch, and antenna keep-out</figcaption>
+            <figcaption>Front: CR2032 holder, reed switch, and antenna keep-out</figcaption>
           </figure>
           <figure>
             <img src="assets/projects/door-sensor/pcb_mcu.png" alt="Door sensor PCB module side" loading="lazy">
-            <figcaption>Back — MS88SF2 (nRF52840) module</figcaption>
+            <figcaption>Back: MS88SF2 (nRF52840) module</figcaption>
           </figure>
         </div>
         <h4>Thread Border Gateway</h4>
@@ -214,7 +290,7 @@
           <li><a target="_blank" href="https://www.nordicsemi.com/Products/Development-hardware/nRF52840-Dongle">Nordic
               nRF52840 Dongle</a></li>
         </ul>
-        <p>Preparing the dongle as a Radio Co-Processor (RCP) is straightforward — follow this
+        <p>Preparing the dongle as a Radio Co-Processor (RCP) is straightforward: follow this
           <a target="_blank"
             href="https://docs.nordicsemi.com/bundle/ncs-1.7.1/page/matter/openthread_rcp_nrf_dongle.html">guide</a>.
           Once the firmware is installed, set up Home Assistant on the Raspberry Pi, connect the USB dongle, then
